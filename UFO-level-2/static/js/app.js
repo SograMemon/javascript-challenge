@@ -3,7 +3,7 @@ var tableData = data;
 //get table reference
 tbody= d3.select("tbody");
 
-//make this a function
+//make a function to show table rows
 function showTable(data){
     //clear tbody
     tbody.html("");
@@ -20,16 +20,46 @@ function showTable(data){
     });
 }
 
+//make function to filter rows
+function dataFilter(data, feild, value){
+    var filteredData= data.filter(record => data[feild]==value);
+    return filteredData;
+
+}
+
 //call show table
 showTable(data);
 
 //get refference to input
-input= d3.select("input");
+var input= d3.select("input");
 //add event to input
 input.on("change", function(){
     var inputDate=this.value;
     var filteredData=data.filter(data=> data["datetime"] == inputDate);
     //console.log(filteredData);
     //call show table on filtered data
-    showTable(filteredData);
-})
+    //showTable(filteredData);
+    showTable(dataFilter(data, "datetime", inputDate));
+});
+
+//populate the city dropdown
+//create list to store values for dropdown menus
+var cities= [];
+var countries=[];
+var states=[];
+var dates=[];
+//loop through all records to check for unique values for each field
+data.forEach(record => {
+    //date
+    if (!(record["date"] in dates)){
+        cities.push(record["date"]);
+    }
+    //country
+    //city
+    if (!(record["city"] in cities)){
+        cities.push(record["city"]);
+    }
+    //
+});
+console.log(cities);
+

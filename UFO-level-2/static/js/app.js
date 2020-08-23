@@ -3,6 +3,13 @@ var tableData = data;
 //get table reference
 tbody= d3.select("tbody");
 
+ //create list to store values for dropdown menus for the entire data
+ var cities= [];
+ var countries=[];
+ var states=[];
+ var dates=[];
+ var shapes=[];
+
 //make a function to show table rows
 function showTable(data){
     //clear tbody
@@ -21,18 +28,13 @@ function showTable(data){
 }
 // function to set intial filter when page is loaded
 function intialFilter(data) {
-    //create list to store values for dropdown menus
-    var cities= [];
-    var countries=[];
-    var states=[];
-    var dates=[];
-    var shapes=[];
+   
     //loop through data and get unique values
     data.forEach(record=>{
         //get unique dates
         if( !dates.includes(record["datetime"]) ){
             dates.push(record["datetime"]);
-            console.log(record["datetime"]);
+            //console.log(record["datetime"]);
         }  
         //get unique countries
         if( !countries.includes(record["country"]) ){
@@ -101,19 +103,31 @@ function intialFilter(data) {
 
 
 
-//call show table
+//call funtions to load the table and filters when site is loaded
 showTable(data);
 intialFilter(data);
-//get refference to input
-//var input= d3.select("input");
-//add event to input
-//input.on("change", function(){
-    //var inputDate=this.value;
-    //var filteredData=data.filter(data=> data["datetime"] == inputDate);
-    //console.log(filteredData);
-    //call show table on filtered data
-    //showTable(filteredData);
+//when date filter is changed by user
+var date= d3.select("#date");//find date filter
+date.on("change", function(){
+    var selected=this.options[this.selectedIndex].value;
+    //filter data based on selection
+    var filteredData= data.filter(record=> record["datetime"]==selected);
+    //using filteredData call showTable
+    showTable(filteredData);
+
+    //set availability of other filters based on selection
+
+    //create new lists to store new filter options
+    var updateCities= [];
+    var updateCountries=[];
+    var updateStates=[];
+    //var updateDates=[]; date is already sey
+    var updateShapes=[];
+
+    //compare unique lists with filtered data to get and store common values
     
-//});
+   
+});
+
 
 

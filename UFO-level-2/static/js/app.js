@@ -106,7 +106,9 @@ function intialFilter(data) {
 //call funtions to load the table and filters when site is loaded
 showTable(data);
 intialFilter(data);
+
 //when date filter is changed by user
+
 var date= d3.select("#date");//find date filter
 date.on("change", function(){
     var selected=this.options[this.selectedIndex].value;
@@ -115,19 +117,76 @@ date.on("change", function(){
     //using filteredData call showTable
     showTable(filteredData);
 
-    //set availability of other filters based on selection
-
-    //create new lists to store new filter options
-    var updateCities= [];
-    var updateCountries=[];
-    var updateStates=[];
-    //var updateDates=[]; date is already sey
-    var updateShapes=[];
-
-    //compare unique lists with filtered data to get and store common values
-    
-   
+    //reset all other filters 
+    d3.select('#country').property('selectedIndex', 0);
+    d3.select('#state').property('selectedIndex', 0);
+    d3.select('#city').property('selectedIndex', 0);
+    d3.select('#shape').property('selectedIndex', 0);
+ 
 });
 
+var country= d3.select("#country");//find country filter
+country.on("change", function(){
+    var selected=this.options[this.selectedIndex].value;
+    //filter data based on selection
+    var filteredData= data.filter(record=> record["country"]==selected);
+    //using filteredData call showTable
+    showTable(filteredData);
+
+    //reset all other filters 
+    d3.select('#date').property('selectedIndex', 0);
+    d3.select('#state').property('selectedIndex', 0);
+    d3.select('#city').property('selectedIndex', 0);
+    d3.select('#shape').property('selectedIndex', 0);
+ 
+});
+
+var state= d3.select("#state");//find state filter
+state.on("change", function(){
+    var selected=this.options[this.selectedIndex].value;
+    //filter data based on selection
+    var filteredData= data.filter(record=> record["state"]==selected);
+    //using filteredData call showTable
+    showTable(filteredData);
+
+    //reset all other filters 
+    d3.select('#country').property('selectedIndex', 0);
+    d3.select('#date').property('selectedIndex', 0);
+    d3.select('#city').property('selectedIndex', 0);
+    d3.select('#shape').property('selectedIndex', 0);
+ 
+});
+
+var city= d3.select("#city");//find city filter
+city.on("change", function(){
+    var selected=this.options[this.selectedIndex].value;
+    //filter data based on selection
+    var filteredData= data.filter(record=> record["city"]==selected);
+    //using filteredData call showTable
+    showTable(filteredData);
+
+    //reset all other filters 
+    d3.select('#date').property('selectedIndex', 0);
+    d3.select('#state').property('selectedIndex', 0);
+    d3.select('#country').property('selectedIndex', 0);
+    d3.select('#shape').property('selectedIndex', 0);
+ 
+});
+
+var shape= d3.select("#shape");//find city filter
+shape.on("change", function(){
+    var selected=this.options[this.selectedIndex].value;
+    //filter data based on selection
+    var filteredData= data.filter(record=> record["shape"]==selected);
+    //using filteredData call showTable
+    showTable(filteredData);
+
+    //reset all other filters 
+    d3.select('#date').property('selectedIndex', 0);
+    d3.select('#state').property('selectedIndex', 0);
+    d3.select('#country').property('selectedIndex', 0);
+    d3.select('#city').property('selectedIndex', 0);
+ 
+});
 
 

@@ -27,6 +27,9 @@ showTable(data);
 input= d3.select("input");
 //add event to input
 input.on("change", function(){
+    // Prevent the page from refreshing
+    d3.event.preventDefault();
+    
     var inputDate=this.value;
     var filteredData=data.filter(data=> data["datetime"] == inputDate);
     //console.log(filteredData);

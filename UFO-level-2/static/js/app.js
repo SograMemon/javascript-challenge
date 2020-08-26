@@ -111,6 +111,9 @@ intialFilter(data);
 
 var date= d3.select("#date");//find date filter
 date.on("change", function(){
+    // Prevent the page from refreshing
+    d3.event.preventDefault();
+
     var selected=this.options[this.selectedIndex].value;
     //console.log(selected);
     //check if all dates is sellected
@@ -134,6 +137,9 @@ date.on("change", function(){
 
 var country= d3.select("#country");//find country filter
 country.on("change", function(){
+    // Prevent the page from refreshing
+    d3.event.preventDefault();
+
     var selected=this.options[this.selectedIndex].value;
     //console.log(selected);
     if(selected=="All Countries"){
@@ -156,6 +162,9 @@ country.on("change", function(){
 
 var state= d3.select("#state");//find state filter
 state.on("change", function(){
+    // Prevent the page from refreshing
+    d3.event.preventDefault();
+
     var selected=this.options[this.selectedIndex].value;
     //console.log(selected);
     if(selected=="All States"){
@@ -178,6 +187,9 @@ state.on("change", function(){
 
 var city= d3.select("#city");//find city filter
 city.on("change", function(){
+    // Prevent the page from refreshing
+    d3.event.preventDefault();
+
     var selected=this.options[this.selectedIndex].value;
     //console.log(selected);
     if(selected=="All Cities"){
@@ -200,6 +212,9 @@ city.on("change", function(){
 
 var shape= d3.select("#shape");//find city filter
 shape.on("change", function(){
+    // Prevent the page from refreshing
+    d3.event.preventDefault();
+    
     var selected=this.options[this.selectedIndex].value;
     //console.log(selected);
     if(selected=="All Shapes"){

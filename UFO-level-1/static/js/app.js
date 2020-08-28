@@ -49,11 +49,16 @@ button.on("click", function(){
 });
 
 //add event to input
-input.on("keyup", function(){
-    d3.event.preventDefault();
-    console.log(d3.event.keyCode);
+input.on("keydown", function(){
+    
     var key=d3.event.keyCode;
-    if(key===13){
+    if(key==13){
         d3.event.preventDefault();
+        var inputDate=input.property("value");
+
+    var filteredData=data.filter(data=> data["datetime"] == inputDate);
+    //console.log(filteredData);
+    //call show table on filtered data
+    showTable(filteredData);
     }
 }, false);
